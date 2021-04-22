@@ -30,11 +30,11 @@
                 &nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnAgregar" runat="server" Text="Agregar"
             OnClick="btnAgregar_Click" ViewStateMode="Disabled" CssClass="form-control btn btn-outline-secondary" Width="150px" />
-            </p> 
             &nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnHome" runat="server" Text="Regresar al Inicio"
-             ViewStateMode="Disabled" CssClass="form-control btn btn-outline-secondary" Width="150px" OnClick="btnHome_Click" />
+             ViewStateMode="Disabled" CssClass="form-control btn btn-outline-success" Width="150px" OnClick="btnHome_Click" />
             
+            </p> 
 
         </div>
         <div>

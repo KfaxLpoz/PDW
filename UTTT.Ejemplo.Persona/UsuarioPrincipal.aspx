@@ -31,16 +31,20 @@
         &nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnAgregar" runat="server" Text="Agregar" 
             onclick="btnAgregar_Click" ViewStateMode="Disabled" CssClass="form-control btn btn-outline-secondary" Width="150px"/>
+        &nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnHome" runat="server" Text="Regresar Inicio" 
+            ViewStateMode="Disabled" CssClass="form-control btn btn-outline-success" Width="150px" OnClick="btnHome_Click"/>
+
     </p>
     </div>
-    <div>
+<%--    <div>
     
         Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:DropDownList ID="ddlStatus" runat="server" Height="35px" Width="177px" 
             ForeColor="White" CssClass="form-select btn bg-secondary ">
         </asp:DropDownList>
     
-    </div>
+    </div>--%>
     <div style="font-weight: bold">
     
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -54,7 +58,7 @@
 <%--                Width="1067px" CellPadding="3" GridLines="Horizontal" 
                  BackColor="White" 
                 BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px"--%>        
-             <asp:GridView ID="dgvPersonas" runat="server" onrowcommand="dgvPersonas_RowCommand"
+             <asp:GridView ID="dgvPersonas" runat="server" onrowcommand="dgvUsuarios_RowCommand"
                 AllowPaging="True" AutoGenerateColumns="False" DataSourceID="DataSourcePersona" 
                 ViewStateMode="Disabled" CssClass="table table-responsive-lg ">
                 <%--<AlternatingRowStyle BackColor="WhiteSmoke" />--%>
@@ -70,6 +74,22 @@
                     <asp:BoundField DataField="personaid" HeaderText="personaid" 
                         SortExpression="personaid" ReadOnly="True" />
                     <asp:BoundField DataField="strToken" HeaderText="strToken" ReadOnly="True" SortExpression="strToken" />
+                     
+                    <asp:TemplateField HeaderText="Editar">
+                        <ItemTemplate>
+                            <asp:ImageButton runat="server" ID="imgEditar" CommandName="Editar" CommandArgument='<%#Bind("id") %>' ImageUrl="~/Images/editrecord_16x16.png" />
+                        </ItemTemplate>
+                        <HeaderStyle HorizontalAlign="Center" />
+                        <ItemStyle HorizontalAlign="Center" Width="50px" />
+
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Eliminar" Visible="True">
+                        <ItemTemplate>
+                            <asp:ImageButton runat="server" ID="imgEliminar" CommandName="Eliminar" CommandArgument='<%#Bind("id") %>' ImageUrl="~/Images/delrecord_16x16.png" OnClientClick="javascript:return confirm('¿Está seguro de querer eliminar el registro seleccionado?', 'Mensaje de sistema')" />
+                        </ItemTemplate>
+                        <HeaderStyle HorizontalAlign="Center" />
+                        <ItemStyle HorizontalAlign="Center" Width="50px" />
+                    </asp:TemplateField>
                 </Columns>
                 <FooterStyle BackColor="#B5C7DE" ForeColor="#F7F7F7" />
                 <HeaderStyle BackColor="ControlDarkDark" Font-Bold="True" ForeColor="#F7F7F7" />
