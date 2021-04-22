@@ -199,5 +199,17 @@ namespace UTTT.Ejemplo.Persona
         }
 
         #endregion
+
+        protected void btnHome_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Response.Redirect("~/Home.aspx", false);
+            }
+            catch (Exception _e)
+            {
+                this.showMessage("Ha ocurrido un error inesperado");
+            }
+        }
     }
 }

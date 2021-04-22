@@ -25,7 +25,7 @@
   </div>
   <div class="col-sm-6">
     <div class="card text-white bg-secondary">
-    <div class="card-header">Usuarios</div>
+    <div class="card-header">Personas</div>
 
       <div class="card-body">
         <h5 class="card-title">Menu de Personas</h5>
