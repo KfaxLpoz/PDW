@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PersonaFrancisco" Class="DcGeneralDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=PersonaFrancisco.mssql.somee.com;Initial Catalog=PersonaFrancisco;Persist Security Info=True;User ID=kfaxlopz_SQLLogin_1" SettingsObjectName="UTTT.Ejemplo.Linq.Data.Properties.Settings" SettingsPropertyName="PersonaFranciscoConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.EstadoCivil" Member="EstadoCivil">
+    <Type Name="EstadoCivil">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="strValor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="EstadoCivil_Persona" Member="Persona" ThisKey="id" OtherKey="intEstadoCivil" Type="Persona" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CatSexo" Member="CatSexo">
+    <Type Name="CatSexo">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="strValor" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="strDescripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="CatSexo_Persona" Member="Persona" ThisKey="id" OtherKey="idCatSexo" Type="Persona" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Direccion" Member="Direccion">
+    <Type Name="Direccion">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idPersona" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="strCalle" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="strNumero" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="strColonia" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Persona_Direccion" Member="Persona" ThisKey="idPersona" OtherKey="id" Type="Persona" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Persona" Member="Persona">
+    <Type Name="Persona">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="strClaveUnica" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="strNombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="strAPaterno" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="strAMaterno" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="idCatSexo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dteFechaNacimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="intNumHermano" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="strCorreo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="strCP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="strRFC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="intEstadoCivil" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Persona_Direccion" Member="Direccion" ThisKey="id" OtherKey="idPersona" Type="Direccion" />
+      <Association Name="CatSexo_Persona" Member="CatSexo" ThisKey="idCatSexo" OtherKey="id" Type="CatSexo" IsForeignKey="true" />
+      <Association Name="EstadoCivil_Persona" Member="EstadoCivil" ThisKey="intEstadoCivil" OtherKey="id" Type="EstadoCivil" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuario">
+    <Type Name="Usuario">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="strUsuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="strPassword" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="strStatus" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fechaRegistro" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="personaid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="strToken" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
