@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Usuario Principal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" ></script>
 
@@ -14,7 +14,7 @@
     <form id="form1" runat="server">
     
     <div style="color: #000000; font-size: medium; font-family: Arial;  font-weight: bold">    
-   <h2>Persona</h2>
+   <h2>Usuario</h2>
 
     </div>
     <div>
@@ -35,8 +35,8 @@
     </div>
     <div>
     
-        Sexo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:DropDownList ID="ddlSexo" runat="server" Height="35px" Width="177px" 
+        Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:DropDownList ID="ddlStatus" runat="server" Height="35px" Width="177px" 
             ForeColor="White" CssClass="form-select btn bg-secondary ">
         </asp:DropDownList>
     
@@ -59,40 +59,17 @@
                 ViewStateMode="Disabled" CssClass="table table-responsive-lg ">
                 <%--<AlternatingRowStyle BackColor="WhiteSmoke" />--%>
                 <Columns>
-                    <asp:BoundField DataField="strClaveUnica" HeaderText="Clave Unica" 
-                        ReadOnly="True" SortExpression="strClaveUnica" />
-                    <asp:BoundField DataField="strNombre" HeaderText="Nombre" ReadOnly="True" 
-                        SortExpression="strNombre"  />
-                    <asp:BoundField DataField="strAPaterno" HeaderText="APaterno" ReadOnly="True" 
-                        SortExpression="strAPaterno" />
-                    <asp:BoundField DataField="strAMaterno" HeaderText="AMaterno" ReadOnly="True" 
-                        SortExpression="strAMaterno" />
-                    <asp:BoundField DataField="CatSexo" HeaderText="Sexo" 
-                        SortExpression="CatSexo" />
-                    <asp:TemplateField HeaderText="Editar">
-                        <ItemTemplate>
-                                    <asp:ImageButton runat="server" ID="imgEditar" CommandName="Editar" CommandArgument='<%#Bind("id") %>' ImageUrl="~/Images/editrecord_16x16.png" />
-                                </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
-                                <ItemStyle HorizontalAlign="Center" Width="50px" />
-                    
-                    </asp:TemplateField>
-                     <asp:TemplateField HeaderText="Eliminar" Visible="True">
-                            <ItemTemplate>
-                                <asp:ImageButton runat="server" ID="imgEliminar" CommandName="Eliminar" CommandArgument='<%#Bind("id") %>' ImageUrl="~/Images/delrecord_16x16.png" OnClientClick="javascript:return confirm('¿Está seguro de querer eliminar el registro seleccionado?', 'Mensaje de sistema')"/>
-                            </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
-                                <ItemStyle HorizontalAlign="Center" Width="50px" />
-                            </asp:TemplateField>
-
-                      <asp:TemplateField HeaderText="Direccion">
-                        <ItemTemplate>
-                                    <asp:ImageButton runat="server" ID="imgDireccion" CommandName="Direccion" CommandArgument='<%#Bind("id") %>' ImageUrl="~/Images/editrecord_16x16.png" />
-                                </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
-                                <ItemStyle HorizontalAlign="Center" Width="50px" />
-                    
-                    </asp:TemplateField>
+                    <asp:BoundField DataField="id" HeaderText="id" 
+                        ReadOnly="True" SortExpression="id" />
+                    <asp:BoundField DataField="strUsuario" HeaderText="strUsuario" ReadOnly="True" 
+                        SortExpression="strUsuario"  />
+                    <asp:BoundField DataField="strPassword" HeaderText="strPassword" ReadOnly="True" 
+                        SortExpression="strPassword" />
+                    <asp:BoundField DataField="strStatus" HeaderText="strStatus" ReadOnly="True" 
+                        SortExpression="strStatus" />
+                    <asp:BoundField DataField="personaid" HeaderText="personaid" 
+                        SortExpression="personaid" ReadOnly="True" />
+                    <asp:BoundField DataField="strToken" HeaderText="strToken" ReadOnly="True" SortExpression="strToken" />
                 </Columns>
                 <FooterStyle BackColor="#B5C7DE" ForeColor="#F7F7F7" />
                 <HeaderStyle BackColor="ControlDarkDark" Font-Bold="True" ForeColor="#F7F7F7" />
@@ -109,8 +86,8 @@
     <asp:LinqDataSource ID="DataSourcePersona" runat="server" 
         ContextTypeName="UTTT.Ejemplo.Linq.Data.Entity.DcGeneralDataContext" 
         onselecting="DataSourcePersona_Selecting" 
-        Select="new (strNombre, strAPaterno, strAMaterno, CatSexo, strClaveUnica,id)" 
-        TableName="Persona" EntityTypeName="">
+        Select="new (id, strUsuario, strPassword, strStatus, personaid, strToken)" 
+        TableName="Usuario" EntityTypeName="">
     </asp:LinqDataSource>
     </form>
 </body>

@@ -45,6 +45,9 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
     partial void InsertUsuario(Usuario instance);
     partial void UpdateUsuario(Usuario instance);
     partial void DeleteUsuario(Usuario instance);
+    partial void InsertStatus(Status instance);
+    partial void UpdateStatus(Status instance);
+    partial void DeleteStatus(Status instance);
     #endregion
 		
 		public DcGeneralDataContext() : 
@@ -114,6 +117,14 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 			get
 			{
 				return this.GetTable<Usuario>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Status> Status
+		{
+			get
+			{
+				return this.GetTable<Status>();
 			}
 		}
 	}
@@ -1186,6 +1197,92 @@ namespace UTTT.Ejemplo.Linq.Data.Entity
 					this._strToken = value;
 					this.SendPropertyChanged("strToken");
 					this.OnstrTokenChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Status")]
+	public partial class Status : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _strDescripcion;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnstrDescripcionChanging(string value);
+    partial void OnstrDescripcionChanged();
+    #endregion
+		
+		public Status()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strDescripcion", DbType="VarChar(50)")]
+		public string strDescripcion
+		{
+			get
+			{
+				return this._strDescripcion;
+			}
+			set
+			{
+				if ((this._strDescripcion != value))
+				{
+					this.OnstrDescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._strDescripcion = value;
+					this.SendPropertyChanged("strDescripcion");
+					this.OnstrDescripcionChanged();
 				}
 			}
 		}
