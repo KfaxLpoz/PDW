@@ -82,6 +82,7 @@
     <Content Include="DireccionExtraManager.aspx" />
     <Content Include="DireccionManager.aspx" />
     <Content Include="EnviarCorreo.aspx" />
+    <Content Include="ErrorPage.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Images\delrecord_16x16.png" />
     <Content Include="Images\editrecord_16x16.png" />
@@ -143,6 +144,13 @@
     </Compile>
     <Compile Include="EnviarCorreo.aspx.designer.cs">
       <DependentUpon>EnviarCorreo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

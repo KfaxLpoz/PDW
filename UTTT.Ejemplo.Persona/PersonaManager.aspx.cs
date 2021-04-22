@@ -57,20 +57,41 @@ namespace UTTT.Ejemplo.Persona
                         this.session.Parametros.Add("baseEntity", this.baseEntity);
                     }
                     List<CatSexo> lista = dcGlobal.GetTable<CatSexo>().ToList();
-                    CatSexo catTemp = new CatSexo();
-                    catTemp.id = -1;
-                    catTemp.strValor = "Seleccionar";
-                    lista.Insert(0, catTemp);
+
                     this.ddlSexo.DataTextField = "strValor";
                     this.ddlSexo.DataValueField = "id";
-                    this.ddlSexo.DataSource = lista;
-                    this.ddlSexo.DataBind();
+                    //List<CatSexo> lista = dcGlobal.GetTable<CatSexo>().ToList();
+                    //CatSexo catTemp = new CatSexo();
+                    //catTemp.id = -1;
+                    //catTemp.strValor = "Seleccionar";
+                    //lista.Insert(0, catTemp);
+                    //this.ddlSexo.DataTextField = "strValor";
+                    //this.ddlSexo.DataValueField = "id";
+                    //this.ddlSexo.DataSource = lista;
+                    //this.ddlSexo.DataBind();
 
                     this.ddlSexo.SelectedIndexChanged += new EventHandler(ddlSexo_SelectedIndexChanged);
                     this.ddlSexo.AutoPostBack = true;
                     if (this.idPersona == 0)
                     {
+                        CatSexo catTemp = new CatSexo();
+                        catTemp.id = -1;
+                        catTemp.strValor = "Seleccionar";
+                        lista.Insert(0, catTemp);
+
+
+                        this.ddlSexo.DataSource = lista;
+                        this.ddlSexo.DataBind();
+
                         this.lblAccion.Text = "Agregar";
+                        DateTime tiempo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                        this.dteCalendar.TodaysDate = tiempo;
+                        this.dteCalendar.SelectedDate = tiempo;
+                        //this.lblAccion.Text = "Agregar";
+                        //DateTime tiempo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                        //this.dteCalendar.TodaysDate = tiempo;
+                        //this.dteCalendar.SelectedDate = tiempo;
+
                     }
                     else
                     {
@@ -79,8 +100,26 @@ namespace UTTT.Ejemplo.Persona
                         this.txtAPaterno.Text = this.baseEntity.strAPaterno;
                         this.txtAMaterno.Text = this.baseEntity.strAMaterno;
                         this.txtClaveUnica.Text = this.baseEntity.strClaveUnica;
+                        //this.setItem(ref this.ddlSexo, baseEntity.CatSexo.strValor);
+                        DateTime? fechaNacimiento = this.baseEntity.dteFechaNacimiento;
+                        this.txtNumHermano.Text = this.baseEntity.intNumHermano.ToString();
+                        this.txtCorreo.Text = this.baseEntity.strCorreo;
+                        this.txtCP.Text = this.baseEntity.strCP;
+                        this.txtRFC.Text = this.baseEntity.strRFC;
+                        if (fechaNacimiento != null)
+                        {
+                            this.dteCalendar.TodaysDate = (DateTime)fechaNacimiento;
+                            this.dteCalendar.SelectedDate = (DateTime)fechaNacimiento;
+
+                        }
+                        this.ddlSexo.DataSource = lista;
+                        this.ddlSexo.DataBind();
                         this.setItem(ref this.ddlSexo, baseEntity.CatSexo.strValor);
-                    }                
+                    }
+                    //this.ddlSexo.SelectedIndexChanged += new EventHandler(ddlSexo_SelectedIndexChanged);
+                    //this.ddlSexo.AutoPostBack = true;
+                    // this.ddlSexo.SelectedIndexChanged += new EventHandler(ddlSexo_SelectedIndexChanged);
+                    // this.ddlSexo.AutoPostBack = true;
                 }
 
             }
@@ -98,6 +137,7 @@ namespace UTTT.Ejemplo.Persona
             {
                 DataContext dcGuardar = new DcGeneralDataContext();
                 UTTT.Ejemplo.Linq.Data.Entity.Persona persona = new Linq.Data.Entity.Persona();
+                //accion agregar
                 if (this.idPersona == 0)
                 {
                     persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
@@ -105,13 +145,25 @@ namespace UTTT.Ejemplo.Persona
                     persona.strAMaterno = this.txtAMaterno.Text.Trim();
                     persona.strAPaterno = this.txtAPaterno.Text.Trim();
                     persona.idCatSexo = int.Parse(this.ddlSexo.Text);
+                    // insersion de fecha de nacimiento
+                    DateTime fechaNacimiento = this.dteCalendar.SelectedDate.Date;
+                    persona.dteFechaNacimiento = fechaNacimiento;
+
+                    //insersion de cantidad de hermanos
+                    persona.intNumHermano = int.Parse(this.txtNumHermano.Text);
+                    persona.strCorreo = this.txtCorreo.Text;
+                    persona.strCP = this.txtCP.Text;
+                    persona.strRFC = this.txtRFC.Text;
+                    persona.intEstadoCivil = int.Parse(this.ddlEstadoCivil.Text);
+
                     dcGuardar.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().InsertOnSubmit(persona);
                     dcGuardar.SubmitChanges();
                     this.showMessage("El registro se agrego correctamente.");
                     this.Response.Redirect("~/PersonaPrincipal.aspx", false);
-                    
+
                 }
                 if (this.idPersona > 0)
+                //funcion Editar
                 {
                     persona = dcGuardar.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().First(c => c.id == idPersona);
                     persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
@@ -119,6 +171,15 @@ namespace UTTT.Ejemplo.Persona
                     persona.strAMaterno = this.txtAMaterno.Text.Trim();
                     persona.strAPaterno = this.txtAPaterno.Text.Trim();
                     persona.idCatSexo = int.Parse(this.ddlSexo.Text);
+                    persona.intEstadoCivil = int.Parse(this.ddlEstadoCivil.Text);
+
+                    // editar de fecha de nacimiento 
+                    DateTime fechaNacimiento = this.dteCalendar.SelectedDate.Date;
+                    persona.dteFechaNacimiento = fechaNacimiento;
+                    persona.intNumHermano = int.Parse(this.txtNumHermano.Text);
+                    persona.strCorreo = this.txtCorreo.Text;
+                    persona.strCP = this.txtCP.Text;
+                    persona.strRFC = this.txtRFC.Text;
                     dcGuardar.SubmitChanges();
                     this.showMessage("El registro se edito correctamente.");
                     this.Response.Redirect("~/PersonaPrincipal.aspx", false);
@@ -129,6 +190,7 @@ namespace UTTT.Ejemplo.Persona
                 this.showMessageException(_e.Message);
             }
         }
+
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {

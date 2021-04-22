@@ -10,7 +10,7 @@
 
 namespace UTTT.Ejemplo.Persona
 {
-    public partial class UsuarioPrincipal
+    public partial class ErrorPage
     {
 
         /// <summary>
