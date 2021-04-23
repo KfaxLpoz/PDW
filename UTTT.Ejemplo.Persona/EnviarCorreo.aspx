@@ -21,7 +21,7 @@
                                 <asp:Label ID="lblCorreo" runat="server" Text="Correo Electronico:" CssClass="form-label col-sm-2"></asp:Label>
                                 <div class="col-sm-10">
                                     <asp:TextBox ID="txtCorreo" runat="server" type="Email" placeholder="Ingresa Tu Correo Electronico:" CssClass="form-control" ValidationGroup="vgrCorreo"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfvCorreo" runat="server" ErrorMessage="Es Obligatorio este Campo" ControlToValidate="txtPass"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rfvCorreo" runat="server" ErrorMessage="Es Obligatorio este Campo" ControlToValidate="txtCorreo"></asp:RequiredFieldValidator>
                                 
                                 </div>
                             </div>
@@ -30,7 +30,7 @@
                                     <asp:Label ID="lblCorreoConfirm" runat="server" Text="Confirmacion:" CssClass="form-label col-sm-2"></asp:Label>
                                     <div class="col-sm-10">
                                         <asp:TextBox ID="txtConfirmCorreo" type="Email" runat="server" placeholder="Confirma tu correo Electronico:" CssClass="form-control" ValidationGroup="vgrCorreo"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="rfvConfirmCorreo" runat="server" ErrorMessage="Es Obligatorio este Campo" ControlToValidate="txtPass"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="rfvConfirmCorreo" runat="server" ErrorMessage="Es Obligatorio este Campo" ControlToValidate="txtConfirmCorreo"></asp:RequiredFieldValidator>
                                         <asp:CompareValidator ID="cvCorreo" runat="server" ErrorMessage="Los Correos no son iguales" ControlToCompare="txtCorreo" ControlToValidate="txtConfirmCorreo"></asp:CompareValidator>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                             <div>
                                 <div class="form-group">
                                     <div class="col-sm-10">
-                                        <asp:Button ID="btnAceptar" runat="server" Text="Enviar Token" CssClass="form-control btn btn-outline-primary"  ValidationGroup="vgrCorreo"/>
+                                        <asp:Button ID="btnAceptar" runat="server" Text="Enviar Token" CssClass="form-control btn btn-outline-primary"  ValidationGroup="vgrCorreo" OnClick="btnAceptar_Click"/>
                                     </div>
                                 </div>
                             </div>

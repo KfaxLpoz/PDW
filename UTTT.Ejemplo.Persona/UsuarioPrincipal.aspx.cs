@@ -86,20 +86,15 @@ namespace UTTT.Ejemplo.Persona
             {
                 DataContext dcConsulta = new DcGeneralDataContext();
                 bool nombreBool = false;
-                //bool statusBool = false;
+                
                 if (!this.txtNombre.Text.Equals(String.Empty))
                 {
                     nombreBool = true;
                 }
-                //if (this.ddlStatus.Text != "-1")
-                //{
-                //    statusBool = true;
-                //}
-
+                
                 Expression<Func<UTTT.Ejemplo.Linq.Data.Entity.Usuario, bool>>
                     predicate =
                     (c =>
-                    //((statusBool) ? c. == int.Parse(this.ddlSexo.Text) : true) &&
                     ((nombreBool) ? (((nombreBool) ? c.strUsuario.Contains(this.txtNombre.Text.Trim()) : false)) : true)
                     );
 
