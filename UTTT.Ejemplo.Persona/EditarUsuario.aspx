@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UsuarioManager.aspx.cs" Inherits="UTTT.Ejemplo.Persona.UsuarioManager" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditarUsuario.aspx.cs" Inherits="UTTT.Ejemplo.Persona.EditarUsuario" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Formulario de Registro Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
@@ -24,20 +24,8 @@
             <div class="form-group">
                 <asp:Label ID="lblPersona" runat="server" Text="Persona:" CssClass="control-label col-sm-2"></asp:Label>
                 <div class="col-sm-10">
-                    <div class="dropdown">
-                        <asp:DropDownList ID="ddlPersona" runat="server" ForeColor="White"
-                            CssClass="selectpicker btn btn-secondary" Width="610px" Height="38px" DataSourceID="ldsPersona" DataTextField="strNombre" DataValueField="id">
-                        </asp:DropDownList>
-
-                        <asp:LinqDataSource ID="ldsPersona" runat="server" ContextTypeName="UTTT.Ejemplo.Linq.Data.Entity.DcGeneralDataContext" EntityTypeName="" Select="new (id, strNombre)" TableName="Persona">
-                        </asp:LinqDataSource>
-
-                    </div>
-                    <div>
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlPersona" InitialValue="-1"
-                            ErrorMessage="Porfavor selecciona un genero" ID="rfvSexo"
-                            CssClass="form-control alert-danger text-center"></asp:RequiredFieldValidator>
-                    </div>
+                        <asp:TextBox ID="txtPersona" Enabled="false" minlength="3" MaxLength="15" runat="server" title="Escribe el nombre de usuario que quieras" required
+                            CssClass="form-control" placeholder="Escribe el nombre de usuario que quieras"></asp:TextBox>
                 </div>
             </div>
 
@@ -47,8 +35,6 @@
                     <div class="col-sm-10">
                         <asp:TextBox ID="txtUsuario" minlength="3" MaxLength="15" runat="server" title="Escribe el nombre de usuario que quieras" required
                             CssClass="form-control" placeholder="Escribe el nombre de usuario que quieras"></asp:TextBox>
-
-
 
                         <div>
                             <asp:RequiredFieldValidator ID="rsvUsuario" runat="server"
@@ -114,10 +100,29 @@
 
             </div>
 
+            
             <div>
+                <div class="form-group">
+                    <asp:Label ID="lblStatus" runat="server" Text="Status del usuario:" CssClass="control-label col-sm-2"></asp:Label>
+                    <div class="col-sm-10">
+                        <asp:TextBox ID="txtStatus" Enabled="false" minlength="3" MaxLength="15" runat="server" title="Status del Usuario" required
+                            CssClass="form-control" placeholder="Escribe el nombre de usuario que quieras"></asp:TextBox>
+
+                    </div>
+                </div>
+
             </div>
+                        <div>
+                <div class="form-group">
+                    <asp:Label ID="lblFrcha" runat="server" Text="Fecha de Registro:" CssClass="control-label col-sm-2"></asp:Label>
+                    <div class="col-sm-10">
+                        <asp:TextBox ID="txtFecha" Enabled="false" minlength="3" MaxLength="15" runat="server" title="Fecha de Registro" required
+                            CssClass="form-control" placeholder="Escribe el nombre de usuario que quieras"></asp:TextBox>
 
+                    </div>
+                </div>
 
+            </div>
 
             <div class="form-group">
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar"
@@ -141,4 +146,3 @@
 
 </body>
 </html>
-

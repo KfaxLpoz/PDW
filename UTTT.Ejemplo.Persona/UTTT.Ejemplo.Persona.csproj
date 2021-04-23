@@ -81,6 +81,7 @@
     <Content Include="direccion.aspx" />
     <Content Include="DireccionExtraManager.aspx" />
     <Content Include="DireccionManager.aspx" />
+    <Content Include="EditarUsuario.aspx" />
     <Content Include="EnviarCorreo.aspx" />
     <Content Include="ErrorPage.aspx" />
     <Content Include="Home.aspx" />
@@ -137,6 +138,13 @@
     </Compile>
     <Compile Include="DireccionManager.aspx.designer.cs">
       <DependentUpon>DireccionManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditarUsuario.aspx.cs">
+      <DependentUpon>EditarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditarUsuario.aspx.designer.cs">
+      <DependentUpon>EditarUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="EnviarCorreo.aspx.cs">
       <DependentUpon>EnviarCorreo.aspx</DependentUpon>

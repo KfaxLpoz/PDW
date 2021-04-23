@@ -146,7 +146,7 @@ namespace UTTT.Ejemplo.Persona
                 this.session.Parametros = parametrosRagion;
                 this.Session["SessionManager"] = this.session;
                 this.session.Pantalla = String.Empty;
-                this.session.Pantalla = "~/UsuarioManager.aspx";
+                this.session.Pantalla = "~/EditarUsuario.aspx";
                 this.Response.Redirect(this.session.Pantalla, false);
 
             }
@@ -165,7 +165,7 @@ namespace UTTT.Ejemplo.Persona
                     c => c.id == _idUsuario);
                 dcDelete.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Usuario>().DeleteOnSubmit(usuario);
                 dcDelete.SubmitChanges();
-                this.showMessage("El registro se agrego correctamente.");
+                this.showMessage("El registro se elimino correctamente.");
                 this.DataSourcePersona.RaiseViewChanged();
             }
             catch (Exception _e)

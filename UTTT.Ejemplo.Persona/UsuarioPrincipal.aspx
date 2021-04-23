@@ -65,15 +65,15 @@
                 <Columns>
                     <asp:BoundField DataField="id" HeaderText="id" 
                         ReadOnly="True" SortExpression="id" />
-                    <asp:BoundField DataField="strUsuario" HeaderText="strUsuario" ReadOnly="True" 
+                    <asp:BoundField DataField="strUsuario" HeaderText="Usuario" ReadOnly="True" 
                         SortExpression="strUsuario"  />
-                    <asp:BoundField DataField="strPassword" HeaderText="strPassword" ReadOnly="True" 
+                    <asp:BoundField DataField="strPassword" HeaderText="Password" ReadOnly="True" 
                         SortExpression="strPassword" />
-                    <asp:BoundField DataField="strStatus" HeaderText="strStatus" ReadOnly="True" 
+                    <asp:BoundField DataField="strStatus" HeaderText="Status" ReadOnly="True" 
                         SortExpression="strStatus" />
-                    <asp:BoundField DataField="personaid" HeaderText="personaid" 
-                        SortExpression="personaid" ReadOnly="True" />
-                    <asp:BoundField DataField="strToken" HeaderText="strToken" ReadOnly="True" SortExpression="strToken" />
+                    <asp:BoundField DataField="fechaRegistro" HeaderText="fechaRegistro" 
+                        SortExpression="fechaRegistro" ReadOnly="True" />
+                    <asp:BoundField DataField="strToken" HeaderText="Token" ReadOnly="True" SortExpression="strToken" />
                      
                     <asp:TemplateField HeaderText="Editar">
                         <ItemTemplate>
@@ -106,7 +106,7 @@
     <asp:LinqDataSource ID="DataSourcePersona" runat="server" 
         ContextTypeName="UTTT.Ejemplo.Linq.Data.Entity.DcGeneralDataContext" 
         onselecting="DataSourcePersona_Selecting" 
-        Select="new (id, strUsuario, strPassword, strStatus, personaid, strToken)" 
+        Select="new (id, strUsuario, strPassword, strStatus, strToken, fechaRegistro)" 
         TableName="Usuario" EntityTypeName="">
     </asp:LinqDataSource>
     </form>
